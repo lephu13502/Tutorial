@@ -1,11 +1,9 @@
 import {useContext} from 'react'
 import Spinner from '../layout/spinner'
-import UserItem from './UserItem'
+import UserItem from '../users/UserItem'
 import GithubContext from '../../context/github/GithubContext'
 function UserResult() {
     const {users,loading}= useContext(GithubContext)
-    
-    
     if(!loading)
     {
         return (
@@ -22,5 +20,4 @@ function UserResult() {
     }
     
 }
-
 export default UserResult

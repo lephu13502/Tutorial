@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import Home from './pages/Home'
 import About from './pages/About'
 import NotFound from './pages/NotFound'
+import User from './pages/User'
 import Navbar from './components/layout/navbar.jsx';
 import Footer from './components/layout/footer.jsx';
 import Alert from './components/layout/alert'
@@ -13,22 +14,31 @@ function App() {
       <AlertProvider>
         <Router>
           <div className='flex flex-col justify-between h-screen'>
-            <Navbar/>
+            <Navbar />
+
             <main className='container mx-auto px-3 pb-12'>
-              <Alert />
               <Routes>
-                <Route exact path='/' component={Home} />
-                <Route path='/about' component={About} />
-                <Route path='/notfound' component={NotFound} />
-                <Route component={NotFound} />
+                <Route
+                  path='/'
+                  element={
+                    <>
+                      <Alert />
+                      <Home />
+                    </>
+                  }
+                />
+                <Route path='/about' element={<About />} />
+                <Route path='/user/:login' element={<User />} />
+                <Route path='/notfound' element={<NotFound />} />
+                <Route path='*' element={<NotFound />} />
               </Routes>
             </main>
-            <Footer/>
+
+            <Footer />
           </div>
         </Router>
       </AlertProvider>
     </GithubProvider>
-  );
+  )
 }
-
 export default App;
